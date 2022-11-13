@@ -20,6 +20,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  rabbitmq:
+    addresses: amqps://ynxvscev:TxTlCaA7KItSdxjOqO6EknD-AhL-fQs3@beaver.rmq.cloudamqp.com/ynxvscev
 
 logging:
   level:

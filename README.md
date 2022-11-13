@@ -23,4 +23,9 @@ de forma a forçar o carregamento eager de entidades relacionadas e ainda evitan
 - Acessar o site: https://app.diagrams.net/
 - Fazer o upload do arquivo: src/main/resources/files/EAD-Arquitetura-Microservices.drawio
 
-Versão 2 utiliza comunicação sincrona e assincrona entre os microservices
+### Versão 2 
+- utiliza comunicação sincrona e assincrona entre os microservices
+
+### RabbitMq
+- https://customer.cloudamqp.com/instance
+- 
