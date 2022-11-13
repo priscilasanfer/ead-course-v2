@@ -69,7 +69,7 @@ public class CourseController {
     @DeleteMapping("/{courseId}")
     public ResponseEntity<Object> deleteCourse(@PathVariable(value = "courseId") UUID courseId) {
         log.debug("DELETE deleteCourse courseId received {} ", courseId);
-        
+
         Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 
         if (courseModelOptional.isEmpty()) {
@@ -114,11 +114,7 @@ public class CourseController {
             @RequestParam(required = false) UUID userId
     ) {
 
-        if (userId != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(SpecificationTemplate.courseUserId(userId).and(spec), pageable));
-        } else {
-            return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
     }
 
     @GetMapping("/{courseId}")

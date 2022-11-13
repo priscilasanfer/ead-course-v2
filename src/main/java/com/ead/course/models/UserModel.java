@@ -5,13 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.UUID;
@@ -20,18 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TB_COURSES_USERS")
+@Table(name = "TB_USERS")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CourseUserModel implements Serializable {
+public class UserModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private CourseModel course;
-    @Column(nullable = false)
     private UUID userId;
 
 }
