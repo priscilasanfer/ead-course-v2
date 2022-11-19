@@ -49,6 +49,8 @@ public class CourseServiceImpl implements CourseService {
             moduleRepository.deleteAll(moduleModelList);
         }
 
+        courseRepository.deleteCourseUserByCourse(courseModel.getCourseId());
+
         courseRepository.delete(courseModel);
     }
 
@@ -77,4 +79,18 @@ public class CourseServiceImpl implements CourseService {
     public void saveSubscriptionUserInCourse(UUID courseId, UUID userId) {
         courseRepository.saveCourseUser(courseId, userId);
     }
+
+
+    @Override
+    @Transactional
+    public void deleteCourseUserByCourse(UUID courseId) {
+        courseRepository.deleteCourseUserByCourse(courseId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseUserByUser(UUID userId) {
+        courseRepository.deleteCourseUserByUser(userId);
+    }
+
 }

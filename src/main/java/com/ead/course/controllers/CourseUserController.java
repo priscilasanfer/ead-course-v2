@@ -80,7 +80,7 @@ public class CourseUserController {
 
         courseService.saveSubscriptionUserInCourse(courseModelOptional.get().getCourseId(), userModelOptional.get().getUserId());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(" ");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Subscription created successfully.");
     }
 
 }
