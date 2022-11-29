@@ -1,49 +1,9 @@
-server:
-  port: 8082
-  servlet:
-    context-path: '/ead-course/'
-
 spring:
   application:
     name: ead-course-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/ead-course-v2
-    username: postgres
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        jdbc:
-          lob.non_contextual_creation: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
-  rabbitmq:
-    addresses: amqps://ynxvscev:TxTlCaA7KItSdxjOqO6EknD-AhL-fQs3@beaver.rmq.cloudamqp.com/ynxvscev
-
-logging:
-  level:
-    com.ead: TRACE
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate: INFO
-
-ead:
-  api:
-    url:
-      authuser: 'http://ead-authuser-service/ead-authuser'
-  broker:
-    exchange:
-      userEventExchange: ead.userEvent
-    queue:
-      userEventQueue:
-        name: ead.userevent.ms.course
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: 'http://localhost:8761/eureka'
-  instance:
-    hostname: localhost
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      discovery:
+        serviceId: ead-config-server
