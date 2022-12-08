@@ -15,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class CourseUserController {
     @Autowired
     UserService userService;
 
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
     @GetMapping("/courses/{courseId}/users")
     public ResponseEntity<Object> getAllUsersByCourse(
             SpecificationTemplate.UserSpec spec,
@@ -54,6 +56,7 @@ public class CourseUserController {
     }
 
     @PostMapping("/courses/{courseId}/users/subscription")
+    @PreAuthorize("hasAnyRole('STUDENT')")
     public ResponseEntity<Object> saveSubscriptionUserInCourse(
             @RequestBody @Valid SubscriptionDto subscriptionDto,
             @PathVariable(value = "courseId") UUID courseId) {
