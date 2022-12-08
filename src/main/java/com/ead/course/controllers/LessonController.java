@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,7 @@ public class LessonController {
     ModuleService moduleService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
     public ResponseEntity<Object> saveLesson(@PathVariable(value = "moduleId") UUID moduleId,
                                              @RequestBody @Valid LessonDto lessonDto) {
 
@@ -66,6 +68,7 @@ public class LessonController {
     }
 
     @DeleteMapping("/{lessonId}")
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
     public ResponseEntity<Object> deleteLesson(@PathVariable(value = "moduleId") UUID moduleId,
                                                @PathVariable(value = "lessonId") UUID lessonId) {
 
@@ -83,6 +86,7 @@ public class LessonController {
     }
 
     @PutMapping("/{lessonId}")
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
     public ResponseEntity<Object> updateLesson(@PathVariable(value = "moduleId") UUID moduleId,
                                                @PathVariable(value = "lessonId") UUID lessonId,
                                                @RequestBody @Valid LessonDto lessonDto) {
@@ -105,6 +109,7 @@ public class LessonController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('STUDENT')")
     public ResponseEntity<Page<LessonModel>> getAllLessons(@PathVariable(value = "moduleId") UUID moduleId,
                                                            SpecificationTemplate.LessonSpec spec,
                                                            @PageableDefault(page = 0, size = 10, sort = "lessonId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -115,6 +120,7 @@ public class LessonController {
     }
 
     @GetMapping("/{lessonId}")
+    @PreAuthorize("hasAnyRole('STUDENT')")
     public ResponseEntity<Object> getOneLesson(@PathVariable(value = "moduleId") UUID moduleId,
                                                @PathVariable(value = "lessonId") UUID lessonId) {
         Optional<LessonModel> lessonModelOptional = lessonService.findLessonIntoModule(moduleId, lessonId);
