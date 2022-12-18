@@ -15,7 +15,7 @@ public class NotificationCommandPublisher {
     @Value(value = "${ead.broker.exchange.notificationCommandExchange}")
     private String notificationCommandExchange;
 
-    @Value(value = "${ead.broker.queue.key.notificationCommandKey}")
+    @Value(value = "${ead.broker.key.notificationCommandKey}")
     private String notificationCommandKey;
 
     public void publishNotificationCommand(NotificationCommandDto notificationCommandDto) {
