@@ -58,7 +58,7 @@ public class WebSecurityConfig {
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String herarchy = "ROLE_ADMIN > ROLE_INSTRUCTOR \n   ROLE_INSTRUCTOR > ROLE_STUDANT \n ROLE_STUDANT > ROLE_USER";
+        String herarchy = "ROLE_ADMIN > ROLE_INSTRUCTOR \n   ROLE_INSTRUCTOR > ROLE_STUDENT \n ROLE_STUDENT > ROLE_USER";
         roleHierarchy.setHierarchy(herarchy);
         return roleHierarchy;
     }
